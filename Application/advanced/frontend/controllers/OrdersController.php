@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\Items;
+use yii\filters\AccessControl;
 
 /**
  * OrdersController implements the CRUD actions for Orders model.
@@ -21,6 +22,17 @@ class OrdersController extends Controller
     public function behaviors()
     {
         return [
+        'access'=>[
+            'class'=>AccessControl::classname(),
+            'only'=>['create','update','delete','view'],
+            'rules'=>[
+            [
+                'allow'=>true,
+                'roles'=>['@']
+            ],
+      ]
+    
+],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

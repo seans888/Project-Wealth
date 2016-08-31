@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2016 at 02:41 PM
+-- Generation Time: Aug 31, 2016 at 06:05 PM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.5.35
+-- PHP Version: 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -39,6 +39,19 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`category_id`, `category_type`, `category_date_created`) VALUES
 (2, 'Books', '2016-08-20 05:11:03'),
 (3, 'Uniforms', '2016-08-20 06:43:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventory`
+--
+
+CREATE TABLE `inventory` (
+  `id_inventory` int(11) NOT NULL,
+  `item` int(11) NOT NULL,
+  `begQty` smallint(255) NOT NULL,
+  `qtyOnhand` smallint(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -114,6 +127,46 @@ INSERT INTO `orders` (`order_id`, `item_id`, `qty`, `cus_fname`, `cus_lname`, `o
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `purchase`
+--
+
+CREATE TABLE `purchase` (
+  `purchase_id` int(11) NOT NULL,
+  `supplier` int(11) NOT NULL,
+  `item` int(11) NOT NULL,
+  `qty` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `purchase`
+--
+
+INSERT INTO `purchase` (`purchase_id`, `supplier`, `item`, `qty`) VALUES
+(1, 1, 4, 12);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supplier`
+--
+
+CREATE TABLE `supplier` (
+  `supplier_id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `contactno` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`supplier_id`, `name`, `contactno`) VALUES
+(1, 'Supplier1', 8700),
+(2, 'Supplier2', 911);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -149,6 +202,13 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
 
 --
+-- Indexes for table `inventory`
+--
+ALTER TABLE `inventory`
+  ADD PRIMARY KEY (`id_inventory`),
+  ADD KEY `item` (`item`);
+
+--
 -- Indexes for table `items`
 --
 ALTER TABLE `items`
@@ -165,6 +225,19 @@ ALTER TABLE `migration`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `purchase`
+--
+ALTER TABLE `purchase`
+  ADD PRIMARY KEY (`purchase_id`),
+  ADD KEY `supplier` (`supplier`);
+
+--
+-- Indexes for table `supplier`
+--
+ALTER TABLE `supplier`
+  ADD PRIMARY KEY (`supplier_id`);
 
 --
 -- Indexes for table `user`
@@ -194,6 +267,16 @@ ALTER TABLE `items`
 --
 ALTER TABLE `orders`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `purchase`
+--
+ALTER TABLE `purchase`
+  MODIFY `purchase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `supplier`
+--
+ALTER TABLE `supplier`
+  MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user`
 --
