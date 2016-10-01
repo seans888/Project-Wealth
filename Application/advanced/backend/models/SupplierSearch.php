@@ -18,8 +18,8 @@ class SupplierSearch extends Supplier
     public function rules()
     {
         return [
-            [['supplier_id', 'contactno'], 'integer'],
-            [['name'], 'safe'],
+            [['supplier_id', 'contact_no'], 'integer'],
+            [['supplier_name', 'supplier_email'], 'safe'],
         ];
     }
 
@@ -60,10 +60,11 @@ class SupplierSearch extends Supplier
         // grid filtering conditions
         $query->andFilterWhere([
             'supplier_id' => $this->supplier_id,
-            'contactno' => $this->contactno,
+            'contact_no' => $this->contact_no,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'supplier_name', $this->supplier_name])
+            ->andFilterWhere(['like', 'supplier_email', $this->supplier_email]);
 
         return $dataProvider;
     }

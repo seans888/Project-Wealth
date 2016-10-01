@@ -8,6 +8,7 @@ use backend\models\PurchaseSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * PurchaseController implements the CRUD actions for Purchase model.

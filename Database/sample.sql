@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2016 at 06:05 PM
+-- Generation Time: Oct 01, 2016 at 02:41 PM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.21
+-- PHP Version: 5.5.37
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -39,19 +39,6 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`category_id`, `category_type`, `category_date_created`) VALUES
 (2, 'Books', '2016-08-20 05:11:03'),
 (3, 'Uniforms', '2016-08-20 06:43:23');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `inventory`
---
-
-CREATE TABLE `inventory` (
-  `id_inventory` int(11) NOT NULL,
-  `item` int(11) NOT NULL,
-  `begQty` smallint(255) NOT NULL,
-  `qtyOnhand` smallint(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -132,17 +119,17 @@ INSERT INTO `orders` (`order_id`, `item_id`, `qty`, `cus_fname`, `cus_lname`, `o
 
 CREATE TABLE `purchase` (
   `purchase_id` int(11) NOT NULL,
-  `supplier` int(11) NOT NULL,
-  `item` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
   `qty` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `purchase`
 --
 
-INSERT INTO `purchase` (`purchase_id`, `supplier`, `item`, `qty`) VALUES
-(1, 1, 4, 12);
+INSERT INTO `purchase` (`purchase_id`, `supplier_id`, `item_id`, `qty`) VALUES
+(1, 2, 2, 35);
 
 -- --------------------------------------------------------
 
@@ -152,17 +139,17 @@ INSERT INTO `purchase` (`purchase_id`, `supplier`, `item`, `qty`) VALUES
 
 CREATE TABLE `supplier` (
   `supplier_id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `contactno` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `supplier_name` varchar(100) NOT NULL,
+  `contact_no` int(11) NOT NULL,
+  `supplier_email` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `supplier`
 --
 
-INSERT INTO `supplier` (`supplier_id`, `name`, `contactno`) VALUES
-(1, 'Supplier1', 8700),
-(2, 'Supplier2', 911);
+INSERT INTO `supplier` (`supplier_id`, `supplier_name`, `contact_no`, `supplier_email`) VALUES
+(2, 'ABC Hardware', 1234567, 'ABCHardware@email.com');
 
 -- --------------------------------------------------------
 
@@ -202,13 +189,6 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
 
 --
--- Indexes for table `inventory`
---
-ALTER TABLE `inventory`
-  ADD PRIMARY KEY (`id_inventory`),
-  ADD KEY `item` (`item`);
-
---
 -- Indexes for table `items`
 --
 ALTER TABLE `items`
@@ -230,8 +210,7 @@ ALTER TABLE `orders`
 -- Indexes for table `purchase`
 --
 ALTER TABLE `purchase`
-  ADD PRIMARY KEY (`purchase_id`),
-  ADD KEY `supplier` (`supplier`);
+  ADD PRIMARY KEY (`purchase_id`);
 
 --
 -- Indexes for table `supplier`

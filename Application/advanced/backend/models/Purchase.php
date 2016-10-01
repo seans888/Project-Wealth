@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "purchase".
  *
  * @property integer $purchase_id
- * @property integer $supplier
- * @property integer $item
+ * @property integer $supplier_id
+ * @property integer $item_id
  * @property integer $qty
  */
 class Purchase extends \yii\db\ActiveRecord
@@ -28,8 +28,8 @@ class Purchase extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['supplier', 'item', 'qty'], 'required'],
-            [['supplier', 'item', 'qty'], 'integer'],
+            [['supplier_id', 'item_id', 'qty'], 'required'],
+            [['supplier_id', 'item_id', 'qty'], 'integer'],
         ];
     }
 
@@ -40,20 +40,20 @@ class Purchase extends \yii\db\ActiveRecord
     {
         return [
             'purchase_id' => 'Purchase ID',
-            'supplier' => 'Supplier',
-            'item' => 'Item',
+            'supplier_id' => 'Supplier Name',
+            'item_id' => 'Item Name',
             'qty' => 'Qty',
         ];
     }
-    /**
+     /**
      * @return \yii\db\ActiveQuery
      */
     public function getSupplier()
     {
         return $this->hasOne(Supplier::className(), ['supplier_id' => 'supplier_id']);
     }
-    public function getItems()
+     public function getItems()
     {
-        return $this->hasOne(Supplier::className(), ['item_id' => 'item_id']);
+        return $this->hasOne(Items::className(), ['item_id' => 'item_id']);
     }
 }

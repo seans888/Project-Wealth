@@ -33,8 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'item_name',
             'item_selling_price',
             'item_unit_cost',
-            // 'item_date_created',
-            // 'item_description:ntext',
+             'item_date_created',
+             'item_description:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

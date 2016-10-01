@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'purchase_id',
-            'supplier',
-            'item',
+            'supplier_id',
+            'item_id',
             'qty',
         ],
     ]) ?>

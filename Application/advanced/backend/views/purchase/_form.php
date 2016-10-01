@@ -15,13 +15,16 @@ use backend\models\Items;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'supplier')->textInput()->dropDownList(
-        ArrayHelper::map(Supplier::find()->all(),'supplier_id','name'),
-        ['prompt'=>'Select Supplier'] )?>
+     <?= $form->field($model, 'supplier_id')->dropDownList(
+        ArrayHelper::map(Supplier::find()->all(),'supplier_id','supplier_name'),
+        ['prompt'=>'Select Supplier']
+    ) ?>
 
-    <?= $form->field($model, 'item')->textInput()->textInput()->dropDownList(
+   
+     <?= $form->field($model, 'item_id')->dropDownList(
         ArrayHelper::map(Items::find()->all(),'item_id','item_name'),
-        ['prompt'=>'Select Item'] ) ?>
+        ['prompt'=>'Select Item']
+    ) ?>
 
     <?= $form->field($model, 'qty')->textInput() ?>
 

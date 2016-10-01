@@ -18,7 +18,7 @@ class PurchaseSearch extends Purchase
     public function rules()
     {
         return [
-            [['purchase_id', 'supplier', 'item', 'qty'], 'integer'],
+            [['purchase_id', 'supplier_id', 'item_id', 'qty'], 'integer'],
         ];
     }
 
@@ -59,8 +59,8 @@ class PurchaseSearch extends Purchase
         // grid filtering conditions
         $query->andFilterWhere([
             'purchase_id' => $this->purchase_id,
-            'supplier' => $this->supplier,
-            'item' => $this->item,
+            'supplier_id' => $this->supplier_id,
+            'item_id' => $this->item_id,
             'qty' => $this->qty,
         ]);
 
