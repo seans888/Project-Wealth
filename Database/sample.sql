@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2016 at 02:41 PM
+-- Generation Time: Oct 01, 2016 at 05:02 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.5.37
 
@@ -109,7 +109,8 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`order_id`, `item_id`, `qty`, `cus_fname`, `cus_lname`, `order_date_created`) VALUES
 (2, 1, 1, 'Sebastian', 'Puriza', '2016-08-21 13:36:03'),
 (4, 4, 2, 'Davesone', 'Kitane', '2016-08-21 14:05:39'),
-(5, 6, 3, 'Luisa', 'Manalo', '2016-08-21 14:16:10');
+(5, 6, 3, 'Luisa', 'Manalo', '2016-08-21 14:16:10'),
+(6, 2, 100, 'akla si third', 'bading si third', '2016-10-01 16:35:02');
 
 -- --------------------------------------------------------
 
@@ -130,6 +131,20 @@ CREATE TABLE `purchase` (
 
 INSERT INTO `purchase` (`purchase_id`, `supplier_id`, `item_id`, `qty`) VALUES
 (1, 2, 2, 35);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `students`
+--
+
+CREATE TABLE `students` (
+  `student_id` int(11) NOT NULL,
+  `student_fname` varchar(50) NOT NULL,
+  `student_mname` varchar(50) NOT NULL,
+  `studet_lname` varchar(50) NOT NULL,
+  `student_email` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -176,7 +191,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Felix', 'Gregorio', 'admin', 'IeIc04AOlDijtNBkCZBXKDKBBcc8Mhos', '$2y$13$hixglTar4p6d3nxXuLnCVOeBrco9tFomUwBGdNncFGF8Q5vnNvQhW', NULL, 'fvgregorio@gmail.com', 10, 1471615048, 1471615048);
+(1, 'Felix', 'Gregorio', 'admin', 'IeIc04AOlDijtNBkCZBXKDKBBcc8Mhos', '$2y$13$hixglTar4p6d3nxXuLnCVOeBrco9tFomUwBGdNncFGF8Q5vnNvQhW', NULL, 'fvgregorio@gmail.com', 10, 1471615048, 1471615048),
+(2, 'Angela', 'Gregorio', 'ganda', 'a4iSXTUt7LSYdMvPPLA1efSPecfbdkYH', '$2y$13$9RdfcNhJXunxgrzR36BgS.WwXaxP/on51l9G1G0gMoiCv.6AzUo2y', NULL, 'mvgsmc01@gmil.com', 10, 1475332443, 1475332443);
 
 --
 -- Indexes for dumped tables
@@ -213,6 +229,12 @@ ALTER TABLE `purchase`
   ADD PRIMARY KEY (`purchase_id`);
 
 --
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`student_id`);
+
+--
 -- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
@@ -245,7 +267,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `purchase`
 --
@@ -260,7 +282,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
