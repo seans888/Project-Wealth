@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\Items;
+use backend\models\categories;
 
 /**
  * ItemsSearch represents the model behind the search form about `backend\models\Items`.

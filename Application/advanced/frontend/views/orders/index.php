@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\OrderSearch */
@@ -18,6 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Orders', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -37,4 +40,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+
+
+
+   Your username is:  <?= \Yii::$app->user->username ?> <br>
+   Your id is :  <?= \Yii::$app->user->id ?> <br>
+   Your First name is :  <?= \Yii::$app->user->first_name ?> <br>
+   Your Last name is : <?= \Yii::$app->user->last_name ?> <br>
+
 </div>

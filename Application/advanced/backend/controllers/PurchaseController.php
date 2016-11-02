@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 
 /**
  * PurchaseController implements the CRUD actions for Purchase model.
@@ -35,14 +36,21 @@ class PurchaseController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {
-        $searchModel = new PurchaseSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    { 
+        if (Yii::$app->user->can( 'admin' )) 
+        {
+                  $searchModel = new PurchaseSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        } else 
+            {
+                throw new ForbiddenHttpException; 
+            }
+      
     }
 
     /**

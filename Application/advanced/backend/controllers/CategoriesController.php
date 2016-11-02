@@ -8,6 +8,8 @@ use backend\models\CategoriesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
+
 
 /**
  * CategoriesController implements the CRUD actions for Categories model.
@@ -35,13 +37,20 @@ class CategoriesController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CategoriesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->can( 'admin' )) 
+        {
+                 $searchModel = new CategoriesSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        } else 
+            {
+                throw new ForbiddenHttpException; 
+            }
+       
     }
 
     /**

@@ -8,6 +8,7 @@ use backend\models\SupplierSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * SupplierController implements the CRUD actions for Supplier model.
@@ -34,14 +35,21 @@ class SupplierController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {
-        $searchModel = new SupplierSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    { 
+        if (Yii::$app->user->can( 'admin' ))
+        {
+                $searchModel = new SupplierSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }  else 
+            {
+                throw new ForbiddenHttpException;
+            }
+        
     }
 
     /**
@@ -63,15 +71,22 @@ class SupplierController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Supplier();
+            if(Yii::$app->user->can( 'admin' )) 
+            {
+                  $model = new Supplier();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->supplier_id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->supplier_id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
+        } else 
+            {
+                throw new ForbiddenHttpException;
+            }
+      
     }
 
     /**
