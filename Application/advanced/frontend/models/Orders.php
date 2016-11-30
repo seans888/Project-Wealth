@@ -4,6 +4,8 @@ namespace frontend\models;
 
 use Yii;
 use backend\models\Items;
+use backend\models\Categories;
+use backend\models\User;
 
 /**
  * This is the model class for table "orders".
@@ -60,4 +62,7 @@ class Orders extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Items::className(), ['item_id' => 'item_id']);
     }
+
+
+
 }

@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\Items;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 
 /**
  * OrdersController implements the CRUD actions for Orders model.
@@ -48,13 +49,20 @@ class OrdersController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new OrdersSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->can( 'create-order' ))
+        {
+                 $searchModel = new OrdersSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        } else 
+            { 
+                throw new ForbiddenHttpException; 
+            }
+       
     }
 
     /**
@@ -64,9 +72,16 @@ class OrdersController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        if (Yii::$app->user->can( 'create-order' )) 
+        {
+            return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+        } else 
+            { 
+                throw new ForbiddenHttpException; 
+            }
+        
     }
 
     /**
@@ -76,17 +91,25 @@ class OrdersController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Orders();
+        if (Yii::$app->user->can( 'create-order' ) ) 
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->order_date_created = date('Y-m-d H:i:s');
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->order_id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+        {
+                $model = new Orders();
+
+            if ($model->load(Yii::$app->request->post())) {
+                $model->order_date_created = date('Y-m-d H:i:s');
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->order_id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
+        } else 
+            {
+               throw new ForbiddenHttpException; 
+            }
+        
     }
 
     /**

@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
+
 
 /**
  * ItemsController implements the CRUD actions for Items model.
@@ -37,13 +39,21 @@ class ItemsController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ItemsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->can( 'admin' )) 
+        {
+                $searchModel = new ItemsSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        } else 
+            {
+                throw new ForbiddenHttpException; 
+                
+            }
+        
     }
 
     /**
@@ -65,17 +75,23 @@ class ItemsController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Items();
+       if (Yii::$app->user->can( 'admin' ) )
+       {
+                $model = new Items();
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->item_date_created = date('Y-m-d H:i:s');
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->item_id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+            if ($model->load(Yii::$app->request->post())) {
+                $model->item_date_created = date('Y-m-d H:i:s');
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->item_id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
+       } else 
+            {
+               throw new ForbiddenHttpException; 
+            }
     }
 
     /**

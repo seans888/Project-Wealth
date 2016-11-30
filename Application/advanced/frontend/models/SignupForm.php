@@ -9,7 +9,6 @@ use common\models\User;
  */
 class SignupForm extends Model
 {
-    
     public $first_name;
     public $last_name;
     public $username;

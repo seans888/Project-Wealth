@@ -17,6 +17,7 @@ return [
         ],
         'user' => [
             'identityClass' => 'common\models\User',
+            'class' => 'frontend\components\User', // extend User component
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
@@ -33,9 +34,15 @@ return [
                 ],
             ],
         ],
+        'authManager'=> 
+            [
+                'class' => 'yii\rbac\DbManager',
+                'defaultRoles' => ['guest'],
+            ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+     
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
