@@ -1,6 +1,6 @@
 <?php require_once 'php_action/db_connect.php' ?>
 <?php require_once 'includes/header.php'; ?>
-
+<div id="page-wrapper">
 <div class="row">
 	<div class="col-md-12">
 
@@ -41,7 +41,7 @@
 		</div> <!-- /panel -->		
 	</div> <!-- /col-md-12 -->
 </div> <!-- /row -->
-
+</div>
 
 <!-- add product -->
 <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog">

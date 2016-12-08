@@ -1,10 +1,11 @@
 <?php require_once 'includes/header.php'; ?>
-
-<div class="row">
+<div id="page-wrapper">
+<div class="row"><br>
 	<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<i class="glyphicon glyphicon-check"></i>	Order Report
+				
 			</div>
 			<!-- /panel-heading -->
 			<div class="panel-body">
@@ -34,7 +35,7 @@
 		</div>
 	</div>
 	<!-- /col-dm-12 -->
-</div>
+</div></div>
 <!-- /row -->
 
 <script src="custom/js/report.js"></script>
