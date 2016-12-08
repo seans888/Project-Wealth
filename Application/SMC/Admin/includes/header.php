@@ -4,7 +4,7 @@
 <html>
 <head>
 
-	<title>Stock Management System</title>
+	<title>South Mansfield College</title>
 
 	<!-- bootstrap -->
 	<link rel="stylesheet" href="assests/bootstrap/css/bootstrap.min.css">
@@ -45,17 +45,17 @@
 	<script src="assests/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
+
 <body>
 
-
-
-	<div class="container">
+<div class="container">
+	 
 
   <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <br><br><br><br>
-                    <h2><a href="dashboard.php">LOGO</a></h2>
+                    <a href="dashboard.php"><center><img src="assests/images/logo.jpg" ></center><br></a>
                     <li class="active">
                         <a href="dashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
