@@ -8,7 +8,7 @@ $result = $query->fetch_assoc();
 
 $connect->close();
 ?>
-
+<div id="page-wrapper">
 <div class="row">
 	<div class="col-md-12">
 		<ol class="breadcrumb">

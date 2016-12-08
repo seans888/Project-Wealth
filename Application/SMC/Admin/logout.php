@@ -8,6 +8,6 @@ session_unset();
 // destroy the session 
 session_destroy(); 
 
-header('location: http://localhost:80/stock/index.php');
+header('location: http://localhost:80/smc/admin/index.php');
 
 ?>

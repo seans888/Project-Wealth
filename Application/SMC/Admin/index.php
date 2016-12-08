@@ -55,7 +55,7 @@ if($_POST) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Stock Management System</title>
+	<title>South Mansfield College</title>
 
 	<!-- bootstrap -->
 	<link rel="stylesheet" href="assests/bootstrap/css/bootstrap.min.css">
@@ -82,10 +82,10 @@ if($_POST) {
 			<div class="col-md-5 col-md-offset-4">
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						<h3 class="panel-title">Please Sign in</h3>
+						<center><h3 class="panel-title">Inventory Management System</h3></center>
 					</div>
-					<div class="panel-body">
-
+					<div class="panel-body"><br>
+					<center><img src="assests/images/logo.jpg" ></center><br>
 						<div class="messages">
 							<?php if($errors) {
 								foreach ($errors as $key => $value) {

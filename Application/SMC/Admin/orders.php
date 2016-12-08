@@ -13,7 +13,7 @@ if($_GET['o'] == 'add') {
 
 
 ?>
-
+<div id="page-wrapper">
 <ol class="breadcrumb">
   <li><a href="dashboard.php">Home</a></li>
   <li>Order</li>
@@ -38,9 +38,9 @@ if($_GET['o'] == 'add') {
 	}
 	?>	
 </h4>
-
-
-
+</div>
+<br>
+<div id="page-wrapper">
 <div class="panel panel-default">
 	<div class="panel-heading">
 
@@ -53,6 +53,7 @@ if($_GET['o'] == 'add') {
 		<?php } ?>
 
 	</div> <!--/panel-->	
+
 	<div class="panel-body">
 			
 		<?php if($_GET['o'] == 'add') { 
