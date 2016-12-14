@@ -1,4 +1,4 @@
-# Sounthmansfield Inventory System
+# South Mansfield Inventory System
 <br>
 In order for you to access the system you should follow the following steps:
 <br>
